@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import config.PIDSettings;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
@@ -29,14 +30,14 @@ public class SwerveModule {
   private final Encoder m_turningEncoder;
 
   // Gains are for example purposes only - must be determined for your own robot!
-  private final PIDController m_drivePIDController = new PIDController(1, 0, 0);
+  private final PIDController m_drivePIDController = new PIDController(PIDSettings.P, PIDSettings.I, PIDSettings.D);
 
   // Gains are for example purposes only - must be determined for your own robot!
   private final ProfiledPIDController m_turningPIDController =
       new ProfiledPIDController(
-          1,
-          0,
-          0,
+          PIDSettings.P,
+          PIDSettings.I,
+          PIDSettings.D,
           new TrapezoidProfile.Constraints(
               kModuleMaxAngularVelocity, kModuleMaxAngularAcceleration));
 
